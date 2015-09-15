@@ -44,28 +44,6 @@ Partial Class FWPropuestaHorario
 
     End Function
 
-
-    'Protected Sub DayPilotCalendar_OnCommand(ByVal sender As Object, ByVal e As CommandEventArgs)
-    '    ' Select Case e.Command
-    '    'Case "navigate"
-    '    'DayPilotCalendar.StartDate = Week.FirstWorkingDayOfWeek(CDate(e.Data("start")))
-    '    '   DayPilotCalendar.Update()
-    '    '   LoadRecursos()
-
-    '    '        Case ("refresh")
-    '    LoadRecursos()
-    '    'DayPilotCalendar.GetCallbackResult())
-    '    DayPilotCalendar.Update()
-
-
-    '    'If e.Data IsNot Nothing AndAlso e.Data("message") IsNot Nothing Then
-    '    '    DayPilotCalendar.UpdateWithMessage(CStr(e.Data("message")))
-    '    'Else
-    '    '    DayPilotCalendar.UpdateWithMessage("Updated.")
-    '    'End If
-    '    ' End Select
-    'End Sub
-
     Private Sub LoadRecursos()
 
         DayPilotCalendar.DataSource = ObtenerDatos()
