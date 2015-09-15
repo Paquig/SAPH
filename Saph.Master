@@ -1,0 +1,125 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Saph.Master.vb" Inherits="Saphmaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>SAPH Planificador de Horarios</title>
+<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
+<script type="text/javascript" src="Scripts/jquery-1.11.3.min.js"></script>
+<!--<script type="text/javascript" src="/Scripts/jquery.poptrox-0.1.js"></script> -->
+<script type="text/javascript" src="Scripts/Util.js"></script>
+<script type="text/javascript" src="Scripts/formularios-1.1.js" ></script>
+ <!-- <script type="text/javascript" src="//www.dipualba.es/js/jquery/jquery-1.11.1.min.js"></script>-->
+ <link rel="stylesheet" href="Scripts/jquery-ui.min.css" />
+ <script type="text/javascript" src="Scripts/jquery-ui.min.js"></script>
+
+        <!-- Para confirmar el borrado de las filas de los gridview y el label del mensaje de error -->
+        <!--<script type="text/javascript" src="//www.dipualba.es/js/formularios/formularios-1.1.js"></script>-->
+  <link href="formularios-1.1.css" rel="stylesheet" type="text/css" />
+        <!-- -->
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="header" class="container">
+	<div id="logo">
+		<h1><a href="#">SAPH </a></h1>
+		<p>seRVICIO ÁGIL DE <a href="http://templated.co">PLANIFICACI</a>ÓN DE HORARIOS</p>
+	</div>
+<!--	<div id="menu">
+		<ul>
+			<li class="current_page_item"><a href="CrearHorario.aspx">Crear Horario</a></li>
+			<li><a href="PropuestaHorarioAdmin.aspx?idhorario=6">Configuracion</a></li>
+			<li><a href="PropuestaHorario.aspx?idhorario=6">Horario Propuesto</a></li>
+		</ul>
+	</div>-->
+    <img style="display:none" src='<%= Page.ResolveClientUrl("~/images/cargando.gif") %>' alt=""/>
+</div>
+<!-- end #header -->
+<!--paqui
+<script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery.poptrox-0.1.js") %>"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/Util.js") %>"></script>
+<div id="wrapper">
+	<div id="splash">
+		<p><span>Bienvenido!</span>&nbsp;&nbsp;</p>
+        <p>Planifique su horario con SAPH.</p>
+        <p>Un servicio gratis y sencillo</p>
+	</div>
+	<div id="poptrox"> 
+		<!-- start -->
+        <!--paqui
+		<ul id="gallery">
+			<li><a href="images/reloj1.jpg"><img src="images/reloj1.jpg" title="" alt="" /></a></li>
+			<li><a href="images/esquema.jpg"><img src="images/esquema.jpg" title="" alt="" /></a></li>
+			<li><a href="images/agenda.jpg"><img src="images/agenda.jpg" title="" alt="" /></a></li>
+		</ul>
+		<br class="clear" />
+		<script type="text/javascript">
+		    $('#gallery').poptrox();
+		</script> 
+		<!-- end --> 
+   <!-- 
+	</div> -->
+	<div id="pagina">
+		<div id="content">
+			<h2></h2>
+			<p></p>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+	        <asp:Label ID="lblMensajeDatos" CssClass="mensaje" runat="server" Visible="true" />
+         </div>
+         <asp:Literal ID="lblJavaScript" runat="server" Text="" />
+        
+       
+        <% If GetAlert() <> "" AndAlso lblMensajeDatos.CssClass = "mensaje" Then%>
+        <script type="text/javascript">
+            alert("<% =GetAlert_JS() %>");
+        </script>
+        <% End If%>
+   
+	</div>
+
+        <!--
+		<div id="sidebar">
+			<h2>Paesent scelerisque</h2>
+			<ul>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+			</ul>
+		</div> -->
+<!-- 
+</div>
+      <script type="text/javascript">
+                  function MostrarMensajeDatosDetalles() {
+                         $("#divMensajeDatosDetalles").show("fast");
+                     }
+                 </script>
+
+                 <asp:Panel ID="pnlMensajeDatos" runat="server" Visible="false" CssClass="noimprimir">
+
+                   <asp:Button ID="btnMensajeDatosDetalles" runat="server" Text="Ver detalles" Font-Size="X-Small" OnClientClick="MostrarMensajeDatosDetalles(); return false;"/>
+            <div id="divMensajeDatosDetalles" style="display:none"> </div>
+               
+                  </asp:Panel>
+paqui --> 
+
+
+<div id="footer">
+	<p>Copyright &copy; PGTébar. All rights reserved. Trabajo fin de Grado Curso de Adaptación al Grado de Ingeniería Informática - UNIR - </p>
+
+</div>
+<!-- end #footer -->
+    </form>
+</body>
+</html>
+

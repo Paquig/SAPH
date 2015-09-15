@@ -1,0 +1,278 @@
+﻿.ui-dialog-titlebar
+{
+	text-align:center;
+}
+
+.ui-widget-overlay
+{
+	opacity:0.9;
+}
+
+.ui-dialog-content
+{
+	text-align:left;
+}
+
+.ui-widget-content a 
+{
+	color: #9B3329;
+}
+.ui-widget-content a:hover
+{
+	color: #FFFFFF;
+}
+
+fieldset
+{
+	padding:15px 5px;
+	margin:5px 0;
+}
+
+.etiqueta
+{
+    display:inline-block;
+    width:150px;
+    font-weight:bold;
+    margin-left:5px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.etiqueta-bloque
+{
+    display:block;
+    width:150px;
+    font-weight:bold;
+    margin-left:5px;
+    float:left;
+}
+
+.valor-bloque
+{
+    display:block;
+    padding-left:165px;
+}
+
+table.valor-bloque
+{
+	position:relative;
+	top:-4px;
+}
+table.valor-bloque td,table.valor-bloque th
+{
+	border-style:none;
+}
+
+.valor-campo
+{
+    display:inline-block;
+    margin-left:15px;
+    vertical-align:top;
+}
+
+table.valor-campo 
+{
+	border-collapse:collapse;
+}
+
+.valor-campo td,th
+{
+	border:solid 1px #6b261c;
+	vertical-align:top;
+	text-align:center;
+}
+
+.valor-campo td
+{
+	padding:10px;
+}
+
+.valor-campo th
+{
+	font-weight:bold;
+	background-color: #eec3c0;
+	color:#000000;
+}
+
+.valor-campo caption
+{
+	padding:2px;
+	vertical-align:top;
+	font-weight:bold;
+	background-color:#ce4e48;
+	color:#FFFFFF;
+	text-align:center;
+	vertical-align:top;
+	margin:5px 0;
+}
+
+.separador-formulario
+{
+    clear:both;
+    margin-bottom:20px;
+}
+
+.botonera
+{
+	margin:20px 0;
+}
+
+.botonera input
+{
+	margin:0 20px;
+}
+
+.a_info
+{
+	padding-left:20px;
+	background:url('Scripts/images/enlace.jpg') no-repeat left center;
+}
+
+.a_abrir
+{
+	padding-left:20px;
+	background:url('Scripts/images/abrir.jpg') no-repeat left center;
+}
+
+.a_detallefirma
+{
+	padding-left:20px;
+	background:url('Scripts/images/detalle-firma.jpg') no-repeat left center;
+}
+
+.a_descargar
+{
+	padding-left:20px;
+	background:url('Scripts/images/descargar.jpg') no-repeat left center;
+}
+
+.a_borrar
+{
+	padding-left:20px;
+	background:url('Scripts/images/borrar.png') no-repeat left center;
+}
+
+.a_aceptar
+{
+	padding-left:20px;
+	background:url('Scripts/images/aceptar.png') no-repeat left center;
+}
+
+.a_editar
+{
+	padding-left:20px;
+	background:url('Scripts/images/editar.png') no-repeat left center;
+}
+
+.a_imprimir
+{
+	padding-left:20px;
+	background:url('Scripts/images/print.png') no-repeat left center;
+}
+
+.importante
+{
+    margin:5px;
+    padding:5px;
+    background-color:#FFFFEE;
+    border:solid 1px #555500;
+    display:block;
+    color:#555500;
+}
+
+.error
+{
+	background:#FFEEEE url(images/error.png) no-repeat 10px 12px;
+	border:solid 1px #550000;
+	text-align:left;
+	padding:10px 5px 10px 30px;
+	margin:10px 0;
+    font-weight:bold;
+    display:block;
+}
+
+.mensaje-warning-dialog
+{
+	background:#FFFFEE url(images/mensaje-warning-dialog.png) no-repeat 10px 12px;
+	border:solid 1px #555500;
+	text-align:left;
+	padding:10px 5px 10px 30px;
+	margin:10px 0;
+    font-weight:bold;
+    display:block;
+}
+
+.mensaje-error-dialog
+{
+	background:#FFEEEE url(images/mensaje-error-dialog.png) no-repeat 10px 12px;
+	border:solid 1px #550000;
+	text-align:left;
+	padding:10px 5px 10px 30px;
+	margin:10px 0;
+    font-weight:bold;
+    display:block;
+}
+
+.mensaje-info-dialog
+{
+	background:#EEEEFF url(images/mensaje-info-dialog.png) no-repeat 10px 12px;
+	border:solid 1px #000055;
+	text-align:left;
+	padding:10px 5px 10px 30px;
+	margin:10px 0;
+    font-weight:bold;
+    display:block;
+}
+
+.mensaje-error
+{
+	padding-left:40px;
+	min-height:40px;
+	background:url(images/mensaje-error.png) no-repeat left top;
+	text-align:left;
+}
+.mensaje-warning
+{
+	padding-left:40px;
+	min-height:40px;
+	background:url(images/mensaje-warning.png) no-repeat left top;
+	text-align:left;
+}
+.mensaje-info
+{
+	padding-left:40px;
+	min-height:40px;
+	background:url(images/mensaje-info.png) no-repeat left top;
+	text-align:left;
+}
+.mensaje-pregunta
+{
+	padding-left:40px;
+	min-height:40px;
+	background:url('Scripts/images/mensaje-pregunta.png') no-repeat left top;
+	text-align:left;
+}
+.mensaje-nopreguntar
+{
+	padding-left:40px;
+	text-align:left;
+	font-size:0.9em;
+	margin:10px 0;
+}
+.mensaje-nopreguntar input
+{
+	width:0.8em;
+	height:0.8em;
+}
+
+.popup
+{
+	background: none #FAFAFA;
+    border: 0 none;
+    font-family: "Trebuchet MS",verdana,arial,sans-serif;
+    font-size: 0.8em;
+    margin: 10px;
+    min-width: 0;
+    position: relative;
+    text-align:left;
+}

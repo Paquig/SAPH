@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report Width="26.7000071156023cm" Name="ListadoCalendario" Zoom="0.91" ShowDimensions="False" xmlns="http://schemas.telerik.com/reporting/2012/3.2">
+  <Items>
+    <PageHeaderSection Height="0.300000031164713cm" Name="pageHeader" />
+    <PageFooterSection Height="0.999999719969241cm" Name="pageFooter">
+      <Items>
+        <TextBox Width="10.6470831834094cm" Height="0.99999988079071cm" Left="0.0999999493360519cm" Top="0cm" Value="=NOW()" Name="currentTimeTextBox" StyleName="PageInfo" />
+        <TextBox Width="6.50000075697897cm" Height="0.99999988079071cm" Left="19.8999988392989cm" Top="0cm" Value="=PageNumber + &quot; de &quot; + PageCount" Name="pageInfoTextBox" StyleName="PageInfo">
+          <Style TextAlign="Right" />
+        </TextBox>
+      </Items>
+    </PageFooterSection>
+    <DetailSection Height="1.90000061819949cm" Name="detail">
+      <Items>
+        <TextBox Width="3.89980040987888cm" Height="0.79980077367246cm" Left="0.0999999476630854cm" Top="0cm" Value="=Fields.horainicio&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox5">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959794323768cm" Height="0.600000744362651cm" Left="4.00000040372212cm" Top="0cm" Value="= Fields.lunesrecurso&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox28">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.599799993540446cm" Left="4.00000161488846cm" Top="0.600200347100089cm" Value="= Fields.lunesUsuario&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox8">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.600000151395794cm" Left="7.19979935010832cm" Top="0.600200347100089cm" Value="= Fields.martesUsuario&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Multiline="True" Name="textBox3">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.600000656048439cm" Left="7.20020064989168cm" Top="0cm" Value="= Fields.martesRecurso&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox9">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959789277242cm" Height="0.593750028386711cm" Left="10.400198227559cm" Top="0.606450470109172cm" Value="= Fields.miercolesUsuario&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox11">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.600000656048439cm" Left="10.400198227559cm" Top="0cm" Value="= Fields.miercolesRecurso &#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox12">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.593750028386711cm" Left="13.599996366501cm" Top="0.600200347100089cm" Value="= Fields.juevesUsuario&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox13">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.600000656048439cm" Left="13.599996366501cm" Top="0cm" Value="= Fields.juevesRecurso&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox15">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.593750003154079cm" Left="16.7997945054429cm" Top="0.606450470109172cm" Value="= Fields.viernesUsuario&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox17">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.600000656048439cm" Left="16.7997945054429cm" Top="0cm" Value="= Fields.viernesRecurso&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox18">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.593750003154079cm" Left="20.0002030722244cm" Top="0.606450470109172cm" Value="= Fields.sabadoUsuario&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox19">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.600000656048439cm" Left="20.0002030722244cm" Top="0cm" Value="= Fields.sabadoRecurso&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox20">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.593750003154079cm" Left="23.1999995962779cm" Top="0.606450470109172cm" Value="= Fields.DomingoUsuario&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox22">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="3.19959783554077cm" Height="0.600000656048439cm" Left="23.1999995962779cm" Top="0cm" Value="= Fields.DomingoRecurso&#xD;&#xA;&#xD;&#xA;" Format="{0}" CanGrow="False" Name="textBox23">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="1.59979965289991cm" Height="0.6cm" Left="5.30019837895477cm" Top="1.20020014523903cm" Value="= Fields.luneshfin&#xD;&#xA;&#xD;&#xA;" Format="{0:t}" CanGrow="False" Name="textBox14">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.899999003311026cm" Height="0.599999709824729cm" Left="4.39999939441683cm" Top="1.20020014523903cm" Value=" Hfin: " Format="{0}" CanGrow="False" Multiline="True" TextWrap="False" Name="textBox25">
+          <Style Visible="False" TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+          <Bindings>
+            <Binding Path="Visible" Expression="=iif(len(Fields.lunesrecurso) &gt; 0, true, false)" />
+          </Bindings>
+        </TextBox>
+        <TextBox Width="0.899999022483826cm" Height="0.599999725818634cm" Left="7.69999974767368cm" Top="1.20020014523903cm" Value=" Hfin: " Format="{0}" CanGrow="False" Multiline="True" TextWrap="False" Name="textBox26">
+          <Style Visible="False" TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+          <Bindings>
+            <Binding Path="Visible" Expression="=iif(len(Fields.martesrecurso) &gt; 0, true, false)" />
+          </Bindings>
+        </TextBox>
+        <TextBox Width="1.59979963302612cm" Height="0.600000023841858cm" Left="8.60019994337797cm" Top="1.20020014523903cm" Value="= Fields.marteshfin&#xD;&#xA;&#xD;&#xA;" Format="{0:t}" CanGrow="False" Name="textBox29">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.899999022483826cm" Height="0.599999725818634cm" Left="10.8004160356406cm" Top="1.20020014523903cm" Value=" Hfin: " Format="{0}" CanGrow="False" Multiline="True" TextWrap="False" Name="textBox30">
+          <Style Visible="False" TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+          <Bindings>
+            <Binding Path="Visible" Expression="=iif(len(Fields.miercolesrecurso) &gt; 0, true, false)" />
+          </Bindings>
+        </TextBox>
+        <TextBox Width="1.59979963302612cm" Height="0.600000023841858cm" Left="11.7006154239007cm" Top="1.20020014523903cm" Value="= Fields.miercoleshfin&#xD;&#xA;&#xD;&#xA;" Format="{0:t}" CanGrow="False" Name="textBox31">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.899999022483826cm" Height="0.599999725818634cm" Left="14.0004144207521cm" Top="1.19415006653845cm" Value=" Hfin: " Format="{0}" CanGrow="False" Multiline="True" TextWrap="False" Name="textBox32">
+          <Style Visible="False" TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+          <Bindings>
+            <Binding Path="Visible" Expression="=iif(len(Fields.juevesrecurso) &gt; 0, true, false)" />
+          </Bindings>
+        </TextBox>
+        <TextBox Width="1.59979963302612cm" Height="0.600000023841858cm" Left="14.900613001568cm" Top="1.19415006653845cm" Value="= Fields.jueveshfin&#xD;&#xA;&#xD;&#xA;" Format="{0:t}" CanGrow="False" Name="textBox33">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.899999022483826cm" Height="0.599999725818634cm" Left="17.2004144207521cm" Top="1.20040029047806cm" Value=" Hfin: " Format="{0}" CanGrow="False" Multiline="True" TextWrap="False" Name="textBox34">
+          <Style Visible="False" TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+          <Bindings>
+            <Binding Path="Visible" Expression="=iif(len(Fields.viernesrecurso) &gt; 0, true, false)" />
+          </Bindings>
+        </TextBox>
+        <TextBox Width="1.59979963302612cm" Height="0.600000023841858cm" Left="18.1006113866795cm" Top="1.20040029047806cm" Value="= Fields.vierneshfin&#xD;&#xA;&#xD;&#xA;" Format="{0:t}" CanGrow="False" Name="textBox35">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.899999022483826cm" Height="0.599999725818634cm" Left="20.3999977795284cm" Top="1.20040029047806cm" Value=" Hfin: " Format="{0}" CanGrow="False" Multiline="True" TextWrap="False" Name="textBox36">
+          <Style Visible="False" TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+          <Bindings>
+            <Binding Path="Visible" Expression="=iif(len(Fields.sabadorecurso) &gt; 0, true, false)" />
+          </Bindings>
+        </TextBox>
+        <TextBox Width="1.59979963302612cm" Height="0.600000023841858cm" Left="21.3001947454557cm" Top="1.20040029047806cm" Value="= Fields.sabadohfin&#xD;&#xA;&#xD;&#xA;" Format="{0:t}" CanGrow="False" Name="textBox37">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.899999022483826cm" Height="0.599999725818634cm" Left="23.699802731281cm" Top="1.20040029047806cm" Value=" Hfin: " Format="{0}" CanGrow="False" Multiline="True" TextWrap="False" Name="textBox38">
+          <Style Visible="False" TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+          <Bindings>
+            <Binding Path="Visible" Expression="=iif(len(Fields.domingorecurso) &gt; 0, true, false)" />
+          </Bindings>
+        </TextBox>
+        <TextBox Width="1.59979963302612cm" Height="0.600000023841858cm" Left="24.5999996972084cm" Top="1.20040029047806cm" Value="= Fields.domingohfin&#xD;&#xA;&#xD;&#xA;" Format="{0:t}" CanGrow="False" Name="textBox39">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="9pt" />
+          </Style>
+        </TextBox>
+      </Items>
+      <ConditionalFormatting>
+        <FormattingRule>
+          <Style BackgroundColor="219, 219, 219" />
+          <Filters>
+            <Filter Expression="= RowNumber()%2" Operator="Equal" Value="0" />
+          </Filters>
+        </FormattingRule>
+      </ConditionalFormatting>
+    </DetailSection>
+    <ReportFooterSection Height="0.132291662986908cm" Name="reportFooterSection" />
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style Color="Black">
+        <Font Name="Tahoma" Size="18pt" Bold="True" Italic="False" Underline="False" Strikeout="False" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="ReportItemBase" StyleName="Title" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style Color="Black" VerticalAlign="Middle">
+        <Font Name="Tahoma" Size="10pt" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="ReportItemBase" StyleName="Caption" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style VerticalAlign="Middle">
+        <Font Name="Tahoma" Size="9pt" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="ReportItemBase" StyleName="Data" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style VerticalAlign="Middle">
+        <Font Name="Tahoma" Size="8pt" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="ReportItemBase" StyleName="PageInfo" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="A4" Landscape="True">
+      <Margins>
+        <MarginsU Left="20mm" Right="10mm" Top="5mm" Bottom="5mm" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <Groups>
+    <Group Name="labelsGroup">
+      <GroupHeader>
+        <GroupHeaderSection PrintOnEveryPage="True" Height="3.2999999243021cm" Name="labelsGroupHeaderSection">
+          <Items>
+            <TextBox Width="3.89980020801782cm" Height="1.00000015139579cm" Left="0.0999999493360519cm" Top="2.19999983005665cm" Value="HORAS" Name="textBox1">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="21.4997998042957cm" Height="0.8cm" Left="4.9002001957043cm" Top="0.0705982228767028cm" Value="=Parameters.titulo.Value " Name="textBox2" StyleName="Title">
+              <Style Color="Red" TextAlign="Center" />
+            </TextBox>
+            <TextBox Width="21.4997998042957cm" Height="0.500000151395794cm" Left="4.9002001957043cm" Top="0.870798325158802cm" Value="= Parameters.subtitulo.Value " Name="textBox6">
+              <Style Color="64, 128, 128" TextAlign="Center">
+                <Font Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.19979707917142cm" Height="1cm" Left="10.3999994448821cm" Top="2.20000023377876cm" Value="MIERCOLES" Name="textBox24">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.19999848604206cm" Height="1cm" Left="23.1999998990695cm" Top="2.20000010093053cm" Value="DOMINGO &#xD;&#xA;" Name="textBox21">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.2cm" Height="1cm" Left="7.19979854266409cm" Top="2.19999969720841cm" Value="MARTES" Name="textBox27">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.19979970336518cm" Height="1cm" Left="16.6999996972084cm" Top="2.20000023377876cm" Value="VIERNES " Name="textBox16">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <PictureBox Url="=Parameters.logotipo.value" Width="5.69999984860421cm" Height="2.1002001957043cm" Left="0cm" Top="0cm" Sizing="ScaleProportional" MimeType="" Anchoring="Left" Name="pictureBox1" />
+            <TextBox Width="3.29980212569787cm" Height="1cm" Left="19.899999243021cm" Top="2.20000010093053cm" Value="SABADO" Name="textBox4">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.1995997599872cm" Height="1.00000015139579cm" Left="3.99999954581262cm" Top="2.19999969720841cm" Value="LUNES" Name="textBox7">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.09980263035052cm" Height="1cm" Left="13.5999974767368cm" Top="2.19999969720841cm" Value="JUEVES" Name="textBox10">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <BorderStyle Bottom="Solid" />
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+          </Items>
+        </GroupHeaderSection>
+      </GroupHeader>
+      <GroupFooter>
+        <GroupFooterSection Height="0.145350593420691cm" Name="labelsGroupFooterSection">
+          <Style Visible="False" />
+        </GroupFooterSection>
+      </GroupFooter>
+    </Group>
+  </Groups>
+  <ReportParameters>
+    <ReportParameter Name="titulo" />
+    <ReportParameter Name="subtitulo" />
+    <ReportParameter Name="logotipo" />
+  </ReportParameters>
+</Report>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical">
+  <Class Name="Saph.BdConexion">
+    <Position X="7.25" Y="11.5" Width="3" />
+    <Members>
+      <Property Name="hayTransaccion" Hidden="true" />
+      <Field Name="transactionWRK" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABEAgUAGAAAQJAAiCIAAAEBEAFCAgQABAAAAAAgACAA=</HashCode>
+      <FileName>App_Code\BdConexion.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.BdConexionManager">
+    <Position X="10.75" Y="11.5" Width="2.25" />
+    <Members>
+      <Method Name="AsignaConexion" Hidden="true" />
+      <Field Name="BD_DISPONIBLES_MINVALUE" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="Saph.BdConexionManager.BD_DISPONIBLES" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\BDConexionManager.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAQAAAAAAAAAABAgAAgAEAAAACAAAAAAA=</HashCode>
+      <FileName>App_Code\BDConexionManager.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.DatosGenericos">
+    <Position X="0.5" Y="12.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAASAAAAAAEAAAAAAIAAAAAAAQQAAAAAAAAQAAA=</HashCode>
+      <FileName>App_Code\DatosGenericos.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.DatosSaph">
+    <Position X="4.25" Y="12.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAFAAIAgABAAAAAAAAIIBhgQAAIAg=</HashCode>
+      <FileName>App_Code\DatosSaph.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FormComunBase">
+    <Position X="14.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAEAAAAAAAQAAAhAIYAQAAAAQECAAAAGAAAAgCQAAA=</HashCode>
+      <FileName>App_Code\FormComunBase.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.Parametros" Collapsed="true">
+    <Position X="24.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAgAIQAAAAAAAAAAAAAAAAAAAABAEAQACCAAAAgDA=</HashCode>
+      <FileName>App_Code\Parametros.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.Util" Collapsed="true">
+    <Position X="23" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oIBQAAAAAAAAGkIEAAIAAAASAAEABgCAAAAQAADAAAE=</HashCode>
+      <FileName>App_Code\Util.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.ValidarException" Collapsed="true">
+    <Position X="24.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAEAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\ValidarException.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FWCrearHorario">
+    <Position X="3.75" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAABAAAEQAAAAAAUAAAAAACAAAAQAAAIBAAIABAA=</HashCode>
+      <FileName>CrearHorario.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.Editar" Collapsed="true">
+    <Position X="24.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQBAAAAEACAIEAAAAAAQABAIAQAAAAAABAACAIBAAA=</HashCode>
+      <FileName>Editar.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FWEnviarInvitacion">
+    <Position X="9" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAEEAAAAAAQIIBgCCABAAQAABAAAAAAAAAABgAIAAAA=</HashCode>
+      <FileName>EnviarInvitacion.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FWInicio">
+    <Position X="1.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Inicio.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.Nuevo" Collapsed="true">
+    <Position X="23" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAEAAAIAAAAAAAIAAAIIQACAAAABAACAIEAAA=</HashCode>
+      <FileName>Nuevo.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FWPaginaFinal">
+    <Position X="11.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAIAAAAAAAAIAABEAAAAAAAEAAgAIACAE=</HashCode>
+      <FileName>PaginaFinal.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FWPropuestaHorario">
+    <Position X="6.25" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAADAAAFAAQAAgAQAAAAEAAAQAAQCAAAAAAIAAAA=</HashCode>
+      <FileName>PropuestaHorario.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.Saphmaster">
+    <Position X="17" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="btnMensajeDatosDetalles" Hidden="true" />
+      <Method Name="Page_Load" Hidden="true" />
+      <Field Name="pnlMensajeDatos" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAQAAEAAAIEAIAAIAAAAAAAAAAAAAIABAA=</HashCode>
+      <FileName>Saph.Master.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.My.MySettings" Collapsed="true">
+    <Position X="21.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FWPropuestaHorarioAdmin">
+    <Position X="13.75" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAACABBAQAAgARQQAAgBgAAABACAIEAAoIQCAA=</HashCode>
+      <FileName>PropuestaHorarioAdmin.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FWEditarHorario">
+    <Position X="16.5" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAgAAAAAAAQIAgAABUAAQAAACAACAQAAAIBAAMABAA=</HashCode>
+      <FileName>EditarHorario.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saph.FwHistoria">
+    <Position X="18.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAQIAAAAAAAAQAAAAAAAAAAAAAAAAIACAA=</HashCode>
+      <FileName>HistoriaHorario.aspx.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Module Name="Saph.My.MyWebExtension" Collapsed="true">
+    <Position X="23" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACABAAAAAABAAEAAAAAAAAAAAAgBgBAAAAAAAAAAAAA=</HashCode>
+      <FileName>My Project\MyExtensions\MyWebExtension.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="Saph.My.MySettingsProperty" Collapsed="true">
+    <Position X="21.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="Saph.My.Resources.Resources" Collapsed="true">
+    <Position X="24.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
