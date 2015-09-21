@@ -121,31 +121,31 @@ Public Class BdConexion
         End If
     End Sub
 
-    Public Sub Commit(Optional ByVal mitoken As String = TOKENNOESTABLECIDO)
-        EstablecerTokenCerrar(mitoken)
-        If cTokenAbrir = cTokenCerrar Then
-            If transactionWRK IsNot Nothing Then
-                transactionWRK.Commit()
-            End If
-        End If
-    End Sub
+    'Public Sub Commit(Optional ByVal mitoken As String = TOKENNOESTABLECIDO)
+    '    EstablecerTokenCerrar(mitoken)
+    '    If cTokenAbrir = cTokenCerrar Then
+    '        If transactionWRK IsNot Nothing Then
+    '            transactionWRK.Commit()
+    '        End If
+    '    End If
+    'End Sub
 
-    Public Sub Rollback(Optional ByVal mitoken As String = TOKENNOESTABLECIDO)
-        EstablecerTokenCerrar(mitoken)
-        If cTokenAbrir = cTokenCerrar Then
-            If transactionWRK IsNot Nothing Then
-                transactionWRK.Rollback()
-            End If
-        End If
-    End Sub
+    'Public Sub Rollback(Optional ByVal mitoken As String = TOKENNOESTABLECIDO)
+    '    EstablecerTokenCerrar(mitoken)
+    '    If cTokenAbrir = cTokenCerrar Then
+    '        If transactionWRK IsNot Nothing Then
+    '            transactionWRK.Rollback()
+    '        End If
+    '    End If
+    'End Sub
 
-    Public Function EstadoCerrada() As Boolean
-        If Conexion().State = ConnectionState.Closed Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
+    'Public Function EstadoCerrada() As Boolean
+    '    If Conexion().State = ConnectionState.Closed Then
+    '        Return True
+    '    Else
+    '        Return False
+    '    End If
+    'End Function
 
     Public Function CreateOleDbCommand() As OleDbCommand
         Dim cmd As New OleDbCommand()
@@ -162,9 +162,7 @@ Public Class BdConexion
         Return cmd
     End Function
 
-    '
-    '  ExecuteNonQuery
-    '
+
     '  Ejecuta una instrucción SQL en y devuelve el número de filas afectadas.
     Public Function ExecuteNonQuery(ByVal cmdText As String, ByVal ParamArray parameters() As Object) As Integer
         Dim nRetorno As Integer = -1
@@ -204,34 +202,34 @@ Public Class BdConexion
         Return nRetorno
     End Function
 
-    Public Function ExecuteScalar(ByVal cmdText As String, ByVal ParamArray parameters() As Object) As Integer
-        Dim nRetorno As Integer = -1
+    'Public Function ExecuteScalar(ByVal cmdText As String, ByVal ParamArray parameters() As Object) As Integer
+    '    Dim nRetorno As Integer = -1
 
-        Dim cmd As OleDbCommand = CreateOleDbCommand(cmdText, parameters)
+    '    Dim cmd As OleDbCommand = CreateOleDbCommand(cmdText, parameters)
 
-        Try
-            Conecta()
-            Try
-                HttpContext.Current.Application.Lock()
+    '    Try
+    '        Conecta()
+    '        Try
+    '            HttpContext.Current.Application.Lock()
 
-                Try
-                    nRetorno = cmd.ExecuteScalar()
-                Catch ex As Exception
-                    Throw New Exception(ex.Message + vbCrLf + vbCrLf + ">>>>>>>>>>>>>" + vbCrLf + ">>>>Sentencia SQL:" + cmdText + vbCrLf + ">>>>>>>>>>>>>" + vbCrLf, ex)
-                End Try
+    '            Try
+    '                nRetorno = cmd.ExecuteScalar()
+    '            Catch ex As Exception
+    '                Throw New Exception(ex.Message + vbCrLf + vbCrLf + ">>>>>>>>>>>>>" + vbCrLf + ">>>>Sentencia SQL:" + cmdText + vbCrLf + ">>>>>>>>>>>>>" + vbCrLf, ex)
+    '            End Try
 
-            Finally
-                cmd.Connection = Nothing
-                cmd = Nothing
-                '
-                HttpContext.Current.Application.Unlock()
-            End Try
-        Finally
-            Cierra()
-        End Try
+    '        Finally
+    '            cmd.Connection = Nothing
+    '            cmd = Nothing
+    '            '
+    '            HttpContext.Current.Application.Unlock()
+    '        End Try
+    '    Finally
+    '        Cierra()
+    '    End Try
 
-        Return nRetorno
-    End Function
+    '    Return nRetorno
+    'End Function
 
     Public Function ExecuteQuery_DataTable(ByVal cmdText As String, ByVal ParamArray parameters() As Object) As DataTable
         Dim cmd As OleDbCommand = CreateOleDbCommand(cmdText, parameters)
@@ -255,13 +253,12 @@ Public Class BdConexion
     Public Function ExecuteQuery_DataRow(ByVal cmdText As String, ByVal ParamArray parameters() As Object) As DataRow
         Dim dt As DataTable = ExecuteQuery_DataTable(cmdText, parameters)
         If dt.Rows.Count = 0 Then
-            '  Throw New SqlRegistroNoEncontradoException("Registro no existente. [" + IIf(parameters.Length > 0, parameters(0).ToString(), "") + "]" + " " + Util.SQL_GetFROM(cmdText))
             Throw New Exception("Registro no existente. [" + IIf(parameters.Length > 0, parameters(0).ToString(), "") + "]")
         End If
         Return dt.Rows(0)
     End Function
 
-    ' NOTA: No se puede usar el método ExecuteScalar() de esta clase pq realiza una conexión con la BD.
+
     Public Function GetAutoIncKey(ByVal columna As String, ByVal tabla As String) As Integer
         Dim cmd As OleDbCommand = CreateOleDbCommand("SELECT " + columna + " FROM " + tabla + " WHERE " + columna + "=GETAUTOINCVALUE(0)")
         Dim o As Object

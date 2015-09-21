@@ -23,24 +23,6 @@ Public Class DatosGenericos
         bdCM = Nothing
     End Sub
 
-    ' ************************************
-    '
-    ' FUNCIONES GENÉRICAS COMUNES A LAS BD
-    ' 
-    ' ************************************
-
-    'Public Function List_TablaAll(ByVal tabla As String, Optional ByVal orderStr As String = "1") As DataTable
-    '    Return List_SELECT("SELECT * FROM " + tabla + IIf(Util.EsVacio(orderStr), "", " ORDER BY " + orderStr))
-    'End Function
-
-    'Public Function List_TablaAllClave(ByVal tabla As String, ByVal campoClave As String, ByVal valorClave As Integer) As DataTable
-    '    Return List_SELECT("SELECT * FROM " + tabla + " WHERE " + campoClave + "=?", valorClave)
-    'End Function
-
-    'Public Function List_TablaAllClave(ByVal tabla As String, ByVal campoClave As String, ByVal valorClave As String) As DataTable
-    '    Return List_SELECT("SELECT * FROM " + tabla + " WHERE " + campoClave + "=?", valorClave)
-    'End Function
-
     Public Function List_TablaClave(ByVal tabla As String, ByVal campoClave As String, ByVal valorClave As Integer) As DataRow
         Return dgBdConexion.ExecuteQuery_DataRow("SELECT * FROM " + tabla + " WHERE " + campoClave + "=?", valorClave)
     End Function
@@ -49,28 +31,9 @@ Public Class DatosGenericos
         Return dgBdConexion.ExecuteQuery_DataRow("SELECT * FROM " + tabla + " WHERE " + campoClave + "=?", valorClave)
     End Function
 
-    'Public Function List_TablaWHERE(ByVal tabla As String, ByVal strWHERE As String, Optional ByVal strORDER As String = "") As DataTable
-    '    Dim cmd As String = "SELECT * FROM " + tabla
-
-    '    If Not Util.EsVacio(strWHERE) Then
-    '        cmd = cmd + " WHERE " + strWHERE
-    '    End If
-
-    '    If Not Util.EsVacio(strORDER) Then
-    '        cmd = cmd + " ORDER BY " + strORDER
-    '    End If
-
-    '    Return List_SELECT(cmd)
-    'End Function
-
     Public Function List_SELECT(ByVal cmdSELECT As String, ByVal ParamArray parameters() As Object) As DataTable
         Return dgBdConexion.ExecuteQuery_DataTable(cmdSELECT, parameters)
     End Function
-
-    'Public Function List_FirstRow(ByRef dt As DataTable, ByVal mensajeExcepcion As String) As DataRow
-    '    If dt.Rows.Count = 0 Then Throw New SqlRegistroNoEncontradoException(mensajeExcepcion)
-    '    Return dt.Rows(0)
-    'End Function
 
     Public Sub Del_Tabla(ByVal tabla As String, ByVal campoClave As String, ByVal valorClave As Integer)
         dgBdConexion.ExecuteNonQuery("DELETE FROM " + tabla + " WHERE " + campoClave + "=?", valorClave)

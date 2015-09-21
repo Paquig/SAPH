@@ -20,10 +20,6 @@ Public Class DatosSaph
         Return List_TablaClave("Recursos", "IdRecurso", IdRecurso)
     End Function
 
-    'Public Function List_Recursos(ByVal IdRecurso As Integer) As DataTable
-    '    Return List_SELECT("SELECT * FROM Recursos  WHERE IdRecurso=?", IdRecurso)
-    'End Function
-
     Public Function List_Recursos_Horario(ByVal idhorario As Integer) As DataTable
         Return List_SELECT("SELECT * FROM Recursos WHERE IpkIdHorario = ?", idhorario)
     End Function
@@ -94,18 +90,6 @@ Public Class DatosSaph
                                    idRecurso)
        
     End Sub
-
-    'Public Function Get_DocAnexo_Numero(ByVal nNumRegistro As Integer) As Integer
-    '    Dim numFicherosAdjuntos As Integer = 0
-
-    '    Dim dT_RD As DataTable = List_SELECT("SELECT COUNT(*) AS nNumFichAdj FROM DocAnexo WHERE nNumRegistro = ?", nNumRegistro)
-
-    '    If dT_RD.Rows.Count > 0 Then
-    '        numFicherosAdjuntos = dT_RD.Rows(0)("nNumFichAdj")
-    '    End If
-
-    '    Return numFicherosAdjuntos
-    'End Function
 
 #End Region
 #Region "Horario"
@@ -192,7 +176,6 @@ Public Class DatosSaph
 
     End Sub
 #End Region
-
 #Region "Historia"
 
     Public Function Insert_Historia(ByVal tFecAccion As DateTime, _
@@ -219,7 +202,7 @@ Public Class DatosSaph
                                        cNomUsuario, _
                                        ipkaccion, _
                                        ipkidhorario, _
-                                       ipkidrecurso)
+                                       ipkidRecurso)
 
 
                 ipkHistoria = dgBdConexion.GetAutoIncKey("IdHistoria", "Historia")
@@ -244,43 +227,4 @@ Public Class DatosSaph
     End Function
 #End Region
 
-    Public Sub Pon_SetHoras()
-
-        Dim c As New OleDbConnection(Parametros.CS_SAPH)
-
-        c.Open()
-
-
-        'tr = c.BeginTransaction()
-
-
-        Dim cmd_VFP As New OleDbCommand()
-        cmd_VFP.Connection = c
-        '  cmd_VFP.Connection = dgBdConexion.Conexion
-        'cmd_VFP.CommandText = "SET REPROCESS TO 300 SECONDS"
-        cmd_VFP.CommandText = "SET HOURS TO 24"
-        'cmd_VFP.CommandText = "SET DATE TO DMY"
-        'cmd_VFP.Transaction = tr
-        cmd_VFP.ExecuteNonQuery()
-
-
-        '   HttpContext.Current.Application.Lock()
-
-        'Dim cmd As String = "SET HOURS TO 24"
-
-        'dgBdConexion.ExecuteNonQuery(cmd)
-
-
-    
-        '    End Try
-        'Catch ex As Exception
-        '    Throw New Exception(ex.Message, ex)
-        'Finally
-        '    HttpContext.Current.Application.UnLock()
-
-        'End Try
-
-
-
-    End Sub
 End Class

@@ -45,16 +45,14 @@ Public Class BdConexionManager
 
     Public Function AsignaConexion(ByVal bd As BD_DISPONIBLES, ByVal ParamArray parameters() As String) As BdConexion
         Dim bdConexionTmp As BdConexion
-        '  Dim cs_Saph As String
+
         bdConexionTmp = New BdConexion(bd)
 
         ValidarBd(bd)
 
         Select Case bd
             Case BdConexionManager.BD_DISPONIBLES.BD_SAPH
-                '    cs_Saph = "\datos\bdSaph.dbc"
                 bdConexionTmp.Conexion() = New OleDbConnection(Parametros.CS_SAPH)
-                '   bdConexionTmp.Conexion() = New OleDbConnection(cs_Saph)
 
         End Select
 
