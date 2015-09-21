@@ -6,13 +6,13 @@
 <br />
 <asp:Label ID="Lbltitulo" runat="server" Text="Su propuesta de horario ha sido enviada" CssClass="label" Width="500"></asp:Label>
 <br />
-<asp:Label ID="Lblusuarios" runat="server" Text="Enlace enviado de participación:" CssClass="label" Width="400" ></asp:Label>
+<asp:Label ID="Lblusuarios" runat="server" Text="Enlace de participación:" CssClass="label" Width="400" ></asp:Label>
 <br />
-<asp:HyperLink ID="HLUsuarios" runat="server">Enlace enviado de participación</asp:HyperLink>
+<asp:HyperLink ID="HLUsuarios" runat="server">Enlace de participación</asp:HyperLink>
 <br />
-<asp:Label ID="Lbladmin" runat="server" Text="Enlace enviado para el administrador:" CssClass="label" Width="400" ></asp:Label>
+<asp:Label ID="Lbladmin" runat="server" Text="Enlace para el administrador:" CssClass="label" Width="400" ></asp:Label>
 <br />
-<asp:HyperLink ID="HLAdministrador" runat="server">Enlace enviado para el administrador</asp:HyperLink>
+<asp:HyperLink ID="HLAdministrador" runat="server">Enlace para el administrador</asp:HyperLink>
 <br />
 <asp:Button ID="BtnAdministrar" runat="server" Text="Administrar Calendario" />
 

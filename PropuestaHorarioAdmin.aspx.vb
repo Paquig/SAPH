@@ -14,22 +14,27 @@ Partial Class FWPropuestaHorarioAdmin
             ' si viene del link del correo...averiguamos el idhorario de la tabla recursos
             AsignarConexionBD()
             If cuuid.Length > 5 Then
-
                 Try
                     Dim dr As DataRow = dSaph.Get_Horario_UUid(cuuid)
-
                     Id_horario = dr("idHorario")
-                   
                 Catch ex2 As Exception
                     Response.Redirect("PaginaError.aspx", True)
                 End Try
             Else
                 Id_horario = Convert.ToInt32(cuuid)
+                Try
+                    Dim dr As DataRow = dSaph.Get_Horario(Id_horario)
+                    Id_horario = dr("idHorario")
+                Catch ex2 As Exception
+                    Response.Redirect("PaginaError.aspx", True)
+                End Try
             End If
 
             DayPilotCalendar.DataSource = ObtenerDatos()
 
             DayPilotCalendar.DataBind()
+
+            Page.MaintainScrollPositionOnPostBack = True
            
         Catch ex As Exception
 
@@ -58,6 +63,7 @@ Partial Class FWPropuestaHorarioAdmin
     Protected Sub DayPilotCalendar_EventMove(ByVal sender As Object, ByVal e As EventMoveEventArgs)
 
         dSaph.MoverRecurso(Convert.ToInt32(e.Id), e.NewStart, e.NewEnd)
+        dSaph.Insert_Historia(DateTime.Now, "", Util.ACCION_HORARIO.ModificarRecurso, Id_horario, Convert.ToInt32(e.Id))
         LoadRecursos()
         DayPilotCalendar.Update()
 
@@ -66,6 +72,7 @@ Partial Class FWPropuestaHorarioAdmin
     Protected Sub DayPilotCalendar_EventResize(ByVal sender As Object, ByVal e As EventResizeEventArgs)
 
         dSaph.MoverRecurso(Convert.ToInt32(e.Id), e.NewStart, e.NewEnd)
+        dSaph.Insert_Historia(DateTime.Now, "", Util.ACCION_HORARIO.ModificarRecurso, Id_horario, Convert.ToInt32(e.Id))
         LoadRecursos()
         DayPilotCalendar.Update()
 
@@ -87,10 +94,6 @@ Partial Class FWPropuestaHorarioAdmin
         Listado("PANTALLA")
     End Sub
 
-    Protected Sub LinkBtonPDF_Click(sender As Object, e As EventArgs) Handles LinkBtonPDF.Click
-        Listado("PDF")
-    End Sub
-
     Protected Sub LinkBtonExcel_Click(sender As Object, e As EventArgs) Handles LinkBtonExcel.Click
         Listado("EXCEL")
     End Sub
@@ -98,10 +101,6 @@ Partial Class FWPropuestaHorarioAdmin
     Protected Sub Listado(ByVal cTipo As String)
         Try
 
-
-            'Dim dT_recursos As DataTable = dSaph.List_General("SELECT *," + _
-            '                                "TTOC(recursos.tstarttime, 2) as horainicio" + _
-            '                                " from Recursos where ipkidhorario=? Order by tstarttime", Id_horario)
             Dim dT_recursos As DataTable = dSaph.List_General("SELECT *," + _
                                            "PADL(allt(str(HOUR(recursos.tstarttime))),2,""0"") + "":"" + PADR(allt(str(MINUTE(recursos.tstarttime))),2,""0"") as horainicio " + _
                                            " from Recursos where ipkidhorario=? Order by tstarttime", Id_horario)
@@ -110,9 +109,6 @@ Partial Class FWPropuestaHorarioAdmin
                 Throw New Exception("No hay recursos en este Calendario Compartido")
             Else
 
-                'Dim dt_datoslistado As DataTable = dSaph.List_General("SELECT distinct " + _
-                '                                "TTOC(recursos.tstarttime, 2) as horainicio " + _
-                '                                " from Recursos where ipkidhorario=? ORDER BY HORAINICIO", Id_horario)
 
                 Dim dt_datoslistado As DataTable = dSaph.List_General("SELECT distinct " + _
                                "PADL(allt(str(HOUR(recursos.tstarttime))),2,""0"") + "":"" + PADR(allt(str(MINUTE(recursos.tstarttime))),2,""0"") as horainicio " + _
@@ -380,9 +376,7 @@ Partial Class FWPropuestaHorarioAdmin
             End If
 
         Catch ex As Exception
-            Throw New Exception(ex.Message, ex)
             MostrarError(ex)
-            '  Page.MaintainScrollPositionOnPostBack = True
         End Try
 
     End Sub

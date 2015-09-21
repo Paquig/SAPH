@@ -2,7 +2,7 @@
     Inherits FormComunBase
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        ' MyBase.Page_Load(sender, e)
+
     End Sub
 
     Protected Sub BtnSiguiente_Click(sender As Object, e As EventArgs) Handles BtnSiguiente.Click
@@ -29,9 +29,8 @@
 
             MostrarError(New Exception("El Calendario se ha creado correctamente"), Nothing, Util.MENSAJE_TIPO.MT_INFO)
 
-            'Hay que montar la siguiente url con parametros, idhorario y cNombreUsuario
-            ' Response.Redirect(Util.ComponerParametrosUrl("PropuestaHorario.aspx", Util.QueryString_PonerParametro(Util.QUERYSTRING_IDHORARIO, idhorario.ToString)))
             Response.Redirect(Parametros.URL_PROPUESTAHORARIO(idhorario))
+
         Catch ex As Exception
             MostrarError(ex, Nothing, Util.MENSAJE_TIPO.MT_ERROR)
             Return

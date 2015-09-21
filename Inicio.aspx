@@ -13,22 +13,6 @@
             
         </p>
 	</div>
-     <!--
-	<div id="poptrox"> 
-		<!-- start -->
-        <!--paqui 
-		<ul id="gallery">
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-		<br class="clear" />
-		<script type="text/javascript">
-		    $('#gallery').poptrox();
-		</script> 
-		
-         <!-- end 
-        </div> -->
- </div> 
+    </div> 
 
 </asp:Content>

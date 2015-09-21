@@ -59,7 +59,6 @@
 
         SetAlert(ex.Message)
         Control_lblMensajeDatos.Text = ex.Message
-        '    Control_pnlMensajeDatos.Visible = True
 
         Select Case mensajeTipo
             Case Util.MENSAJE_TIPO.MT_ERROR
@@ -80,10 +79,6 @@
         End If
     End Sub
 
-    'Public Function Control_pnlMensajeDatos() As Panel
-    '    Dim o As Panel = Util.FindControlRecursive(Master, "pnlMensajeDatos")
-    '    Return o
-    'End Function
 
     Public Function Control_lblMensajeDatos() As Label
         Dim o As Label = Util.FindControlRecursive(Master, "lblMensajeDatos")
@@ -95,40 +90,10 @@
 
         Control_lblMensajeDatos.Visible = False
         Control_lblMensajeDatos.Text = ""
-        'Control_pnlMensajeDatos.Visible = False
 
     End Sub
 
 #End Region
-
-
-
-    'Protected Sub Page_Load_Pre_COMUN(sender As Object, e As System.EventArgs)
-    '    ' Eliminar la caché para trabajar siempre con datos reales.
-    '    EliminarCache()
-
-    '    ' Obtener datos previos, como por ejemplo, la Entidad para el Registro, necesario
-    '    ' para crear las conexiones de BDs.
-    '    ' AsignarConexionesBD necesita saber la Entidad con la que se trabaja, y CargarUsuario
-    '    ' necesita las conexiones para validar el Usuario.
-    '    ' CargarUsuario_Pre()
-
-    '    ' Asignar conexion de base de datos
-    '    AsignarConexionBD()
-
-    '    ' Obtener usuario que está accediendo a la página
-    '    'CargarUsuario()
-
-    '    ' Callback
-    '    'callbackLlamador = Util.QueryString_ObtenerCallbackLlamador(Request)
-    '    'callbackModo = Util.QueryString_ObtenerCallbackModo(Request)
-    '    'callbackCerrarVentana = Util.QueryString_ObtenerCallbackCerrarVentana(Request)
-    '    'callbackRespuestaFormato = Util.QueryString_ObtenerCallbackRespuestaFormato(Request)
-
-    '    ' Regresar a la misma posición del explorador cliente después de la devolución de datos
-    '    Page.MaintainScrollPositionOnPostBack = True
-
-    'End Sub
 
     Protected Sub AsignarConexionBD()
         dSaph = New DatosSaph

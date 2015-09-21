@@ -11,28 +11,37 @@ Public Class FWEnviarInvitacion
 
         Try
             cUuid = Util.QueryString_ObtenerParametro(Request, Util.QUERYSTRING_IDHORARIO, True)
-            ' si viene del link del correo...averiguamos el idhorario de la tabla recursos
             AsignarConexionBD()
-            If cuuid.Length > 5 Then
-                Dim dr As DataRow = dSaph.Get_Horario_UUid(cuuid)
-                idHorario = dr("idHorario")
-                nLinkllamador = Util.LINK_LLAMADOR.PropuestaAdmin
-            Else
-                idHorario = Convert.ToInt32(cuuid)
+            Try
+                If cUuid.Length > 5 Then
+                    ' si viene del link del correo...averiguamos el idhorario de la tabla recursos
+                    Dim dr As DataRow = dSaph.Get_Horario_UUid(cUuid)
+                    idHorario = dr("idHorario")
+                    nLinkllamador = Util.LINK_LLAMADOR.PropuestaAdmin
+                Else
+                    idHorario = Convert.ToInt32(cUuid)
 
-            End If
+                End If
 
-            '   idHorario = Convert.ToInt32(Util.QueryString_ObtenerIdHorario(Request))
-            '  AsignarConexionBD()
-
-            'Cogemos los datos del horario
-            drHorario = dSaph.Get_Horario(idHorario)
+                'Cogemos los datos del horario
+                drHorario = dSaph.Get_Horario(idHorario)
+            Catch ex2 As Exception
+                Response.Redirect("PaginaError.aspx", True)
+            End Try
 
             If Not IsPostBack Then
 
                 Dim cTitulo As String = drHorario("cTituloHorario").ToString.Trim + IIf(Not Util.EsVacio(drHorario("cSubtituloHorario")), " - " + drHorario("cSubtituloHorario").ToString.Trim, "")
 
-                TxtMensaje.Text = drHorario("cNombreAdmin").ToString.ToUpper.Trim
+                Dim TextInicio As String = ""
+
+                If Not Util.EsVacio(drHorario("cNombreAdmin").ToString.ToUpper.Trim) Then
+                    TextInicio = drHorario("cNombreAdmin").ToString.ToUpper.Trim
+                Else
+                    TextInicio = drHorario("cEmailAdmin").ToString.ToUpper.Trim
+                End If
+
+                TxtMensaje.Text = TextInicio
                 TxtMensaje.Text += " le invita a participar en la planificación del Horario: " + vbCrLf + _
                             cTitulo + vbCrLf + _
                             "por considerarle persona interesada." + vbCrLf + vbCrLf
@@ -47,40 +56,43 @@ Public Class FWEnviarInvitacion
 
     Protected Sub BtnFinaliza_Click(sender As Object, e As EventArgs) Handles BtnFinaliza.Click
 
+        Dim lenviados As Boolean = False
         Try
-            ' If Not Util.EsVacio(TxtDestinatarios.Text) Then
+            'Voy a  generar el uuid del horario correspondiente, a no ser que esté reinvitando
 
-            If ComprobarEmails(TxtDestinatarios.Text) Then
-                'Voy a  generar el uuid del horario correspondiente, a no ser que esté reinvitando
+            If Util.EsVacio(drHorario("cuuid").ToString.Trim) Then
+                cUuid = Util.GeneraGUID()
+            Else
+                cUuid = drHorario("cuuid").ToString.Trim
+            End If
 
-                If Util.EsVacio(drHorario("cuuid").ToString.Trim) Then
-                    cUuid = Util.GeneraGUID()
-                Else
-                    cUuid = drHorario("cuuid").ToString.Trim
-                End If
+            If Not Util.EsVacio(TxtDestinatarios.Text) Then
 
-                ' Enviar los emails destinatarios
-                If Not Util.EsVacio(TxtDestinatarios.Text) Then
+                If ComprobarEmails(TxtDestinatarios.Text) Then
+                    ' Enviar los emails destinatarios
                     EnvioEmails()
+                    lenviados = True
                 Else
-                    MostrarError(New Exception("No se ha enviado ninguna invitación "), Nothing, Util.MENSAJE_TIPO.MT_INFO)
+                    Throw New Exception("Dirección de correo electronico no valida, el correo debe tener el formato: nombre@dominio .xxx;...")
                 End If
 
-                'Envio email al admin
-                EnvioEmailAdmin()
+            End If
 
+            If nLinkllamador = Util.LINK_LLAMADOR.PropuestaHorario Then
+                EnvioEmailAdmin()
                 'Actualizo el horario con el nuevo uuid.u
                 dSaph.UpdateHorarioUuid(idHorario, cUuid)
                 'Finalizar
-                ' Response.Redirect(Parametros.URL_PAGINAFINAL(idHorario))
                 Response.Redirect(Parametros.URL_PAGINAFINAL(cUuid))
             Else
-                Throw New Exception("Dirección de correo electronico no valida, el correo debe tener el formato: nombre@dominio.xxx;...")
+                'Está reinvitando desde el administrador
+                If lenviados Then
+                    dSaph.Insert_Historia(DateTime.Now, drHorario("cNombreAdmin"), Util.ACCION_HORARIO.Invitar, idHorario, 0)
+                    Throw New Exception("Mensajes enviados a los participantes")
+                Else
+                    Throw New Exception("No se ha enviado ningún mensaje")
+                End If
             End If
-
-            '  Else
-            '    Throw New Exception(" Se debe indicar los correos electrónicos de los Destinatarios.")
-            ' End If
 
         Catch ex As Exception
             MostrarError(ex)
@@ -94,28 +106,20 @@ Public Class FWEnviarInvitacion
 
         cDestinatarios = TxtDestinatarios.Text.Trim
 
-        'If Util.EsVacio(cDestinatarios) Then
-        '    Throw New Exception(" No se ha enviado correo porque no se han obtenido Destinatarios.")
-        '    Return
-        'End If
-
         Dim cRemitente As String = drHorario("cemailadmin").ToString.Trim
-
-        '  "pgtebar@hotmail.com"
 
         Dim cAsunto As String = "Participación en la planificación de horario"
         Dim cCuerpo As String = ""
         Dim cAdjuntos As String = ""
-        ' cAdjuntos += Parametros.PATH_WEBRAIZ + "images\logosaph.png"
+
         cAdjuntos += Parametros.REPORTS_LOGO()
-        'Envio
-        '  En el cuerpo voy a poner el mensaje
+
+        ' En el cuerpo voy a poner el mensaje
+
         cCuerpo += TxtMensaje.Text.ToString
 
         cCuerpo += "Acceda a la siguiente dirección para su tratamiento: " + vbCrLf
-        ' cCuerpo += "<a href=""" + Parametros.URL_WEB_RAIZ + Parametros.URL_PROPUESTAHORARIO(idHorario) + """>" + "Participa en el Calendario" + "</a>" + vbCrLf + vbCrLf
         cCuerpo += "<a href=""" + Parametros.URL_WEB_RAIZ() + Parametros.URL_PROPUESTAHORARIO(cUuid) + """>" + "Pincha aqui para acceder al calendario" + "</a>" + vbCrLf + vbCrLf
-
         cCuerpo = "<div style=""font-family:Arial"">" + cCuerpo + "</div>" + vbCrLf
         cCuerpo = cCuerpo.Replace(vbCrLf, "<br />")
 
@@ -134,22 +138,20 @@ Public Class FWEnviarInvitacion
             Return
         End If
 
-        'Aqui debería ser un correo fijo mailer@saph.com que sea el que figure para el envio de correo
-        Dim cRemitente As String = drHorario("cemailadmin").ToString.Trim
+        'Aqui debería ser un correo fijo que sea el que figure para el envio de correo
+
+        Dim cRemitente As String = "saphservicio@hotmail.com"
 
         Dim cAsunto As String = "Participación en la planificación de horario como administrador"
         Dim cCuerpo As String = ""
         Dim cAdjuntos As String = ""
-        ' cAdjuntos += Parametros.PATH_WEBRAIZ() + "images\logosaph.png"
+
         cAdjuntos += Parametros.REPORTS_LOGO()
         'Envio
 
         cCuerpo += "Hola " + drHorario("cNombreAdmin").ToString.ToUpper.Trim + "! Ha creado una propuesta de calendario." + vbCrLf
         cCuerpo += "Acceda a la siguiente dirección para administrar su propuesta de Horario: " + vbCrLf
-        '        cCuerpo += "<a href=""" + Parametros.URL_WEB_RAIZ() + Parametros.URL_PROPUESTAHORARIO_ADMIN(idHorario) + """>" + "Pincha aqui para acceder al calendario" + "</a>" + vbCrLf + vbCrLf
-
         cCuerpo += "<a href=""" + Parametros.URL_WEB_RAIZ() + Parametros.URL_PROPUESTAHORARIO_ADMIN(cUuid) + """>" + "Pincha aqui para acceder al calendario" + "</a>" + vbCrLf + vbCrLf
-
         cCuerpo = "<div style=""font-family:Arial"">" + cCuerpo + "</div>" + vbCrLf
         cCuerpo = cCuerpo.Replace(vbCrLf, "<br />")
 

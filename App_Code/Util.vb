@@ -27,9 +27,10 @@ Public Class Util
         AñadirRecurso = 4
         ModificarRecurso = 5
         BorrarRecurso = 6
+        Invitar = 7
     End Enum
 
-    Protected Shared ACCION_ARRAY_STRING() As String = {"Crear Horario", "Borrar Horario", "Modificar Horario", "Añadir Recurso", "Modficar Recurso", "Borrar Recurso"}
+    Protected Shared ACCION_ARRAY_STRING() As String = {"Crear Horario", "Borrar Horario", "Modificar Horario", "Añadir Recurso", "Modficar Recurso", "Borrar Recurso", "Invitar"}
 
     Public Shared Function ACCIONVALORLETRA(ByVal op As ACCION_HORARIO) As String
         Return ACCION_ARRAY_STRING(op - 1)
@@ -41,7 +42,6 @@ Public Class Util
     End Enum
 #End Region
 
-  
 #Region "RUTINAS"
 
     Public Shared Function NombreFicheroAleatorio() As String
@@ -53,9 +53,6 @@ Public Class Util
         '--------------------------
 
         HttpContext.Current.Application.Lock()
-        ' Util.Lock(True)
-        ' NO es necesario realizar un bloqueo REAL de toda la aplicación mediante Dim appLock As Locks.AppLock = New Locks.AppLock()
-        ' ya que el nombre del archivo aleatorio contendrá el nombre del servidor.
         '--------------------------
         If HttpContext.Current.Application("ID_TEMP") Is Nothing Then
             HttpContext.Current.Application("ID_TEMP") = 0
@@ -116,19 +113,11 @@ Public Class Util
     Public Shared Sub AñadirParametro(ByRef cmd As OleDbCommand, ByVal parameter As String, Optional ByVal paramType As OleDbType = OleDbType.Date)
 
         Dim op As OleDbParameter = New OleDbParameter(parameter, paramType)
-        '  Dim op As OleDbParameter = New OleDbParameter("p1", paramType)
-        'OleDbType.Date)
         op.Direction = ParameterDirection.Input
-        ' op.IsNullable = True
         op.OleDbType = paramType
         op.Value = parameter
         cmd.Parameters.Add(op)
 
-        'Dim parameter = Factory.CreateParameter()
-        'parameter.Direction = ParameterDirection.Input
-        'parameter.ParameterName = name
-        'parameter.Value = value
-        'cmd.Parameters.Add(parameter)
     End Sub
 
 
@@ -244,7 +233,6 @@ Public Class Util
         sb.Append("<html>")
         sb.Append("<head>")
         sb.Append("<script type='text/javascript'>")
-        ' sb.Append("if (parent && parent.DayPilot && parent.DayPilot.ModalStatic) {")
         sb.Append("if (parent) {")
         sb.Append("parent.NuevoRecurso();")
         sb.Append("parent.DayPilot.ModalStatic.close(" & DayPilot.Web.Ui.Json.SimpleJsonSerializer.Serialize(result) & ");")
@@ -266,7 +254,7 @@ Public Class Util
     End Sub
 
 #End Region
-#Region "Rutinas Horas"
+#Region "RUTINA HORAS"
     Public Shared Function ObtenHoras(ByVal start As TimeSpan) As Integer
         Return start.Hours
     End Function
@@ -274,7 +262,7 @@ Public Class Util
 #Region "ENVIARCORREO"
     Public Shared Sub EnviarMail(tcRemitente As String, tcDestinatarios As String, tcAsunto As String, tcCuerpo As String, tcAdjuntos As String, Optional lEnviarMails As Boolean = True)
         Dim correo As New System.Net.Mail.MailMessage()
-        correo.From = New System.Net.Mail.MailAddress(tcRemitente, "SAPH Mailer")
+        correo.From = New System.Net.Mail.MailAddress(tcRemitente, "Servicio SAPH")
 
         For Each cmail As String In tcDestinatarios.Split(";")
             correo.To.Add(cmail)
@@ -288,19 +276,16 @@ Public Class Util
         correo.IsBodyHtml = True
         correo.Priority = System.Net.Mail.MailPriority.Normal
 
-        'first we create the Plain Text part
         Dim plainView As Net.Mail.AlternateView = Net.Mail.AlternateView.CreateAlternateViewFromString(tcCuerpo, Nothing, "text/plain")
 
         Dim htmlView As Net.Mail.AlternateView = Net.Mail.AlternateView.CreateAlternateViewFromString(tcCuerpo + "<img src=cid:logosaph>", Nothing, "text/html")
 
-        'create the LinkedResource (embedded image)
-        ' Dim logo As New Net.Mail.LinkedResource(Parametros.PATH_DATOSRAIZ() + "\SAPH\images\logosaph.png")
+
         Dim logo As New Net.Mail.LinkedResource(tcAdjuntos)
         logo.ContentId = "logosaph"
-        'add the LinkedResource to the appropriate view
+
         htmlView.LinkedResources.Add(logo)
 
-        'add the views
         correo.AlternateViews.Add(plainView)
         correo.AlternateViews.Add(htmlView)
 
@@ -317,7 +302,7 @@ Public Class Util
         'Puerto SMTP de Hotmail: 25 o 465
 
         smtp.Host = "smtp.live.com"
-        smtp.Credentials = New System.Net.NetworkCredential("pgtebar@hotmail.com", "paqui-g.")
+        smtp.Credentials = New System.Net.NetworkCredential("saphservicio@hotmail.com", "saph-servicio")
         smtp.EnableSsl = True
 
         smtp.Send(correo)
@@ -326,13 +311,12 @@ Public Class Util
 
     Public Shared Function EsEmailValido(ByVal email As String) As Boolean
         Return Regex.IsMatch(email, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")
-        '                  "^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]{2,4}$"
 
     End Function
 
 #End Region
 
-#Region "uuid"
+#Region "UUID"
     Public Shared Function GeneraGUID() As String
 
         Dim sGUID As String = ""
@@ -344,7 +328,7 @@ Public Class Util
 
 
 #End Region
-#Region "Reports"
+#Region "REPORTS"
 
     Public Shared Sub ReportGenerarEnNavegador(ByVal rutaPlantilla As String, datos As DataTable, ByVal parameters As String(,), ByVal nombreFichero As String, ByRef pResponse As HttpResponse)
         Dim r As New Telerik.Reporting.Report()

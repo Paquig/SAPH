@@ -7,9 +7,8 @@
 <script src="Scripts/DayPilot/event_handling.js" type="text/javascript"></script>
  <script type="text/javascript">
          var idhorario = <%=Id_Horario %>;
-         var paquivar = "hola";
-      //   alert(idhorario);
-     </script>
+ </script> 
+
       <script type="text/javascript">
           function NuevoRecurso() {
               // alert(' Actualiza nuevo recurso');
@@ -31,8 +30,7 @@
            
             <li><asp:LinkButton ID="LinkBtonImprimir" runat="server">Imprimir</asp:LinkButton> </li>
             <li><asp:LinkButton ID="LinkBtonExcel" runat="server">Exportar a Excell</asp:LinkButton> </li>
-		<!--	<li><asp:LinkButton ID="LinkBtonPDF" runat="server">Exportar a PDF</asp:LinkButton> </li> -->
-            
+		            
        	    </asp:TableCell>
         </asp:TableRow>
         </asp:Table>
@@ -67,7 +65,7 @@
         EventMoveHandling="CallBack" 
         EventResizeHandling="CallBack"
         OnEventMove="DayPilotCalendar_EventMove" 
-		OnEventResize="DayPilotCalendar_EventResize" 
+		OnEventResize="DayPilotCalendar_EventResize" TimeFormat="Clock24Hours" 
         />
          <br />
    

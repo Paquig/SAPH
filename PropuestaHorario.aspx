@@ -48,9 +48,6 @@
         OnEventMove="DayPilotCalendar_EventMove" 
 		OnEventResize="DayPilotCalendar_EventResize"
         />
-    <!-- <!  OnCommand="DayPilotCalendar_OnCommand"<asp:SqlDataSource ID="SqlDBSaph" runat="server"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource> -->
-
     <br />
     <asp:Button ID="BtnSiguiente" runat="server" Text="Compartir" CssClass="boton-accion" />
     <br />

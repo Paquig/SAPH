@@ -11,24 +11,31 @@ Partial Class FWPropuestaHorario
             Dim cuuid As String = Util.QueryString_ObtenerParametro(Request, Util.QUERYSTRING_IDHORARIO, True)
             ' si viene del link del correo...averiguamos el idhorario de la tabla recursos
             AsignarConexionBD()
+            Dim dr As DataRow
             If cuuid.Length > 5 Then
                 Try
-                    Dim dr As DataRow = dSaph.Get_Horario_UUid(cuuid)
+                    dr = dSaph.Get_Horario_UUid(cuuid)
                     Id_horario = dr("idHorario")
                     LblTexto.Text = dr("cTituloHorario").ToString.ToUpper.Trim
                     BtnSiguiente.Visible = False
                 Catch ex2 As Exception
                     Response.Redirect("PaginaError.aspx", True)
                 End Try
-
             Else
-                Id_horario = Convert.ToInt32(cuuid)
-                LblTitulo.Text = "Calendario que va a compartir"
+                Try
+                    Id_horario = Convert.ToInt32(cuuid)
+                    dr = dSaph.Get_Horario(Id_horario)
+                    LblTitulo.Text = "Calendario que va a compartir"
+                Catch ex2 As Exception
+                    Response.Redirect("PaginaError.aspx", True)
+                End Try
             End If
 
             DayPilotCalendar.DataSource = ObtenerDatos()
 
             DayPilotCalendar.DataBind()
+
+            Page.MaintainScrollPositionOnPostBack = True
 
         Catch ex As Exception
             MostrarError(ex, Nothing, Util.MENSAJE_TIPO.MT_ERROR)
@@ -55,6 +62,7 @@ Partial Class FWPropuestaHorario
     Protected Sub DayPilotCalendar_EventMove(ByVal sender As Object, ByVal e As EventMoveEventArgs)
 
         dSaph.MoverRecurso(Convert.ToInt32(e.Id), e.NewStart, e.NewEnd)
+        dSaph.Insert_Historia(DateTime.Now, "", Util.ACCION_HORARIO.ModificarRecurso, Id_horario, Convert.ToInt32(e.Id))
         LoadRecursos()
         DayPilotCalendar.Update()
 
@@ -63,6 +71,7 @@ Partial Class FWPropuestaHorario
     Protected Sub DayPilotCalendar_EventResize(ByVal sender As Object, ByVal e As EventResizeEventArgs)
 
         dSaph.MoverRecurso(Convert.ToInt32(e.Id), e.NewStart, e.NewEnd)
+        dSaph.Insert_Historia(DateTime.Now, "", Util.ACCION_HORARIO.ModificarRecurso, Id_horario, Convert.ToInt32(e.Id))
         LoadRecursos()
         DayPilotCalendar.Update()
 

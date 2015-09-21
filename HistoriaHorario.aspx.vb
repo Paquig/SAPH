@@ -5,20 +5,24 @@ Partial Class FwHistoria
     Private cuuid As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            '  idhorario = Util.QueryString_ObtenerParametro(Request, Util.QUERYSTRING_IDHORARIO, True)
-            'AsignarConexionBD()
 
             cuuid = Util.QueryString_ObtenerParametro(Request, Util.QUERYSTRING_IDHORARIO, True)
             ' si viene del link del correo...averiguamos el idhorario de la tabla recursos
             AsignarConexionBD()
-            If cuuid.Length > 5 Then
+            Dim dr As DataRow
+            Try
+                If cuuid.Length > 5 Then
 
-                Dim dr As DataRow = dSaph.Get_Horario_UUid(cuuid)
-                idhorario = dr("idHorario")
+                    dr = dSaph.Get_Horario_UUid(cuuid)
+                    idhorario = dr("idHorario")
 
-            Else
-                idhorario = Convert.ToInt32(cuuid)
-            End If
+                Else
+                    idhorario = Convert.ToInt32(cuuid)
+                    dr = dSaph.Get_Horario(idhorario)
+                End If
+            Catch ex2 As Exception
+                Response.Redirect("PaginaError.aspx", True)
+            End Try
 
             GrdHistoria.DataSource = dSaph.List_General("SELECT * FROM historia LEFT OUTER JOIN recursos ON recursos.idrecurso = historia.ipkidrecurso WHERE historia.ipkidhorario=?", idhorario)
             GrdHistoria.DataBind()
@@ -33,8 +37,6 @@ Partial Class FwHistoria
 
         Try
             If Not idhorario = -1 Then
-                '  Response.Redirect(Util.ComponerParametrosUrl("PropuestaHorario.aspx", Util.QueryString_PonerParametro(Util.QUERYSTRING_IDHORARIO, idhorario)))
-                ' Response.Redirect(Parametros.URL_PROPUESTAHORARIO_ADMIN(idhorario))
                 Response.Redirect(Parametros.URL_PROPUESTAHORARIO_ADMIN(cuuid))
             Else
                 Throw New Exception("Código de Horario incorrecto: " + idhorario.ToString)

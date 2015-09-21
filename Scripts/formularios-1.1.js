@@ -7,7 +7,7 @@ var formularios_dialogReference="#pagina";
 function formularios_submit(event) {
     if (typeof formularios_omitirsubmitdialog!=="undefined"&&formularios_omitirsubmitdialog) return;
     
-    openShadowBoxHTML(250, 100, formularios_titulo, "<div><img style=\"float:left;margin-right:10px;\" src=\"" + formularios_imgCargando + "\" alt=\"Espere por favor...\" /> <div style=\"text-align:center\">Espere un momento por favor...</div></div>",0,$(document).scrollTop());
+    openShadowBoxHTML(250, 100, formularios_titulo, "<div><img style=\"float:left;margin-right:10px;\" src=\"" + formularios_imgCargando + "\" alt=\"Espere por favor...\" /> <div style=\"text-align:center;font-size:small\">Espere un momento por favor...</div></div>",0,$(document).scrollTop());
 }
 
 function formularios_ScrollView(ctrls) {

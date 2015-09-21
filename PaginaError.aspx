@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Saph.Master" CodeFile="PaginaError.aspx.vb" Inherits="Fw_ERROR" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <p>  &nbsp; &nbsp;<asp:Panel ID="Panel1" Width="772px" BorderWidth="2px" 
+    <p>  &nbsp; &nbsp;<asp:Panel ID="Panel1" Width="874px" BorderWidth="2px" 
         BorderColor="Red"  Height="350px" runat="server">
  <br />
         <asp:Image ID="Image1" runat="server" ImageUrl="~/images/mensaje-info.png" 

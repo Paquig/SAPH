@@ -11,7 +11,6 @@ Partial Public Class Nuevo
     Private idhorario As Integer = 1
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        ' If Not IsPostBack Then
 
         idhorario = Util.QueryString_ObtenerIdHorario(Request)
 
@@ -20,8 +19,6 @@ Partial Public Class Nuevo
         TxtInicio.Text = Inicio.ToString("HH:mm:ss")
 
         TxtDay.Text = WeekdayName(Convert.ToDateTime(Request.QueryString("tstart")).DayOfWeek, False)
-
-        '  End If
 
     End Sub
 
@@ -42,12 +39,7 @@ Partial Public Class Nuevo
         idrecurso = dSaph.Insert_Recurso(cDescripcion, tStartTime, tEndTime, day, cNombreUsuario, idhorario)
         dSaph.Insert_Historia(DateTime.Now, cNombreUsuario, Util.ACCION_HORARIO.AñadirRecurso, idhorario, idrecurso)
 
-        ' passed to the modal dialog close handler, see Scripts/DayPilot/event_handling.js
-        Dim ht As New Hashtable()
-        ht("refresh") = "yes"
-        ht("message") = "Recurso Creado."
-
-        Util.Close(Me, ht)
+        Util.Close(Me)
     End Sub
 
     Protected Sub ButtonCancel_Click(ByVal sender As Object, ByVal e As EventArgs)

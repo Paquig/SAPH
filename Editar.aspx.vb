@@ -22,23 +22,20 @@ Public Class Editar
             TxtDescripcion.Text = dr("cDesRecurso")
             TxtUsuario.Text = dr("cNombreUsuario")
             idHorario = dr("ipkidHorario")
+            Recurrence.Value = dr("ipkidHorario")
 
         End If
     End Sub
 
     Protected Sub ButtonOK_Click(ByVal sender As Object, ByVal e As EventArgs)
+
         Dim note As String = TxtDescripcion.Text
         Dim dSaph As New DatosSaph
         idRecurso = Util.QueryString_ObtenerIdRecurso(Request)
-
+        idHorario = Recurrence.Value
         dSaph.UpdateRecursoDescripcion(idRecurso, TxtDescripcion.Text, "")
         dSaph.Insert_Historia(DateTime.Now, TxtUsuario.Text, Util.ACCION_HORARIO.ModificarRecurso, idHorario, idRecurso)
-
-        Dim ht As New Hashtable()
-        ht("refresh") = "yes"
-        ht("message") = "Recurso Actualizado."
-
-        Util.Close(Me, ht)
+        Util.Close(Me)
 
     End Sub
 
@@ -47,16 +44,14 @@ Public Class Editar
     End Sub
 
     Protected Sub ButtonDelete_Click(ByVal sender As Object, ByVal e As EventArgs)
+
         Dim dSaph As New DatosSaph
         idRecurso = Util.QueryString_ObtenerIdRecurso(Request)
+        idHorario = Recurrence.Value
         dSaph.DeleteRecurso(idRecurso)
-
         dSaph.Insert_Historia(DateTime.Now, TxtUsuario.Text, Util.ACCION_HORARIO.BorrarRecurso, idHorario, idRecurso)
+        Util.Close(Me)
 
-        Dim ht As New Hashtable()
-        ht("refresh") = "yes"
-        ht("message") = "Recurso borrado."
-        Util.Close(Me, ht)
     End Sub
 
 

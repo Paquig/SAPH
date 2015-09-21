@@ -3,34 +3,35 @@ Public Class FWEditarHorario
     Inherits FormComunBase
     Protected idhorario As Integer = 0
     Private cUuid As String
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            ' idhorario = Util.QueryString_ObtenerParametro(Request, Util.QUERYSTRING_IDHORARIO, True)
-            ' AsignarConexionBD()
+
             cUuid = Util.QueryString_ObtenerParametro(Request, Util.QUERYSTRING_IDHORARIO, True)
-            ' si viene del link del correo...averiguamos el idhorario de la tabla recursos
             AsignarConexionBD()
-            If cUuid.Length > 5 Then
+            Try
+                If cUuid.Length > 5 Then
+                    ' si viene del link del correo...averiguamos el idhorario de la tabla recursos
+                    Dim dr As DataRow = dSaph.Get_Horario_UUid(cUuid)
+                    idhorario = dr("idHorario")
+                Else
+                    idhorario = Convert.ToInt32(cUuid)
+                End If
 
-                Dim dr As DataRow = dSaph.Get_Horario_UUid(cUuid)
-                idhorario = dr("idHorario")
-              
-            Else
-                idhorario = Convert.ToInt32(cUuid)
-            End If
+                If Not IsPostBack Then
 
-            If Not IsPostBack Then
+                    Dim drhorario As DataRow = dSaph.Get_Horario(idhorario)
+                    TxtTitulo.Text = drhorario("cTituloHorario")
+                    TxtSubtitulo.Text = drhorario("cSubtituloHorario")
+                    TxtNomUsuario.Text = drhorario("cNombreAdmin")
+                    TxtCorreoElectronico.Text = drhorario("cemailAdmin")
+                End If
+            Catch ex2 As Exception
+                Response.Redirect("PaginaError.aspx")
+            End Try
 
-                Dim drhorario As DataRow = dSaph.Get_Horario(idhorario)
-                TxtTitulo.Text = drhorario("cTituloHorario")
-                TxtSubtitulo.Text = drhorario("cSubtituloHorario")
-                TxtNomUsuario.Text = drhorario("cNombreAdmin")
-                TxtCorreoElectronico.Text = drhorario("cemailAdmin")
-            End If
         Catch ex As Exception
             MostrarError(ex, Nothing, Util.MENSAJE_TIPO.MT_ERROR)
-            '   Page.EnableViewState = False
-            '  MyBase.Finalize()
         End Try
 
 
@@ -42,15 +43,6 @@ Public Class FWEditarHorario
         If (Util.EsVacio(TxtTitulo.Text)) Then
             Throw New ValidarException("Debes indicar el Título del Calendario." + Util.HTML_SALTOLINEA, TxtTitulo)
         End If
-
-        'If (Util.EsVacio(TxtSubtitulo.Text)) Then
-        '    Throw New ValidarException("Debes indicar el Subtítulo del Calendario." + Util.HTML_SALTOLINEA, TxtSubtitulo)
-        'End If
-
-        'If (Util.EsVacio(TxtNomUsuario.Text)) Then
-        '    Throw New ValidarException("Debes indicar el Nombre del Administrador del Calendario." + Util.HTML_SALTOLINEA, TxtNomUsuario)
-        'End If
-
         If (Util.EsVacio(TxtCorreoElectronico.Text)) Then
             Throw New ValidarException("Debes indicar el correo electrónico del Administrador del Calendario." + Util.HTML_SALTOLINEA, TxtCorreoElectronico)
         Else
@@ -63,6 +55,11 @@ Public Class FWEditarHorario
     Protected Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
         Try
             dSaph.DeleteHorario(idhorario)
+
+            MostrarError(New Exception("El Calendario ha sido eliminado. Gracias por utilizar SAPH"), Nothing, Util.MENSAJE_TIPO.MT_INFO)
+
+            Response.Redirect("PaginaGracias.aspx")
+
         Catch ex As Exception
             MostrarError(ex, Nothing, Util.MENSAJE_TIPO.MT_ERROR)
         End Try
@@ -70,7 +67,6 @@ Public Class FWEditarHorario
     End Sub
 
     Protected Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        'Validamos los campos que consideramos obligatorios para crear el horario
 
         Try
             ValidarCampos()
@@ -91,16 +87,14 @@ Public Class FWEditarHorario
 
         Catch ex As Exception
             MostrarError(ex, Nothing, Util.MENSAJE_TIPO.MT_ERROR)
-            '  Return
         End Try
+
     End Sub
 
     Protected Sub Btnvolver_Click(sender As Object, e As EventArgs) Handles Btnvolver.Click
 
         Try
             If Not idHorario = -1 Then
-                '  Response.Redirect(Util.ComponerParametrosUrl("PropuestaHorario.aspx", Util.QueryString_PonerParametro(Util.QUERYSTRING_IDHORARIO, idhorario)))
-                '   Response.Redirect(Parametros.URL_PROPUESTAHORARIO_ADMIN(idhorario))
                 Response.Redirect(Parametros.URL_PROPUESTAHORARIO_ADMIN(cUuid))
             Else
                 Throw New Exception("Código de Horario incorrecto: " + idHorario.ToString)
