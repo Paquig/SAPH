@@ -46,7 +46,7 @@
         EventMoveHandling="CallBack" 
         EventResizeHandling="CallBack"
         OnEventMove="DayPilotCalendar_EventMove" 
-		OnEventResize="DayPilotCalendar_EventResize"
+		OnEventResize="DayPilotCalendar_EventResize" TimeFormat="Clock24Hours"
         />
     <br />
     <asp:Button ID="BtnSiguiente" runat="server" Text="Compartir" CssClass="boton-accion" />
